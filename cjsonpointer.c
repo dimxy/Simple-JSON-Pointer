@@ -57,7 +57,10 @@ const cJSON* browseOnLevel(const cJSON *json, char *tokens[], int curtoken, int 
     if (curtoken == numtokens)
         return json;
 
-    //fprintf(stderr, "json=%s\n", cJSON_Print(json));
+    // char *p = cJSON_Print(json);
+    // fprintf(stderr, "json=%s\n", (p ? p : "NULL") );
+    // if (p) cJSON_free(p);
+
     if (cJSON_IsArray(json))
     {
         if (!isNumberString(tokens[curtoken]))
@@ -134,9 +137,9 @@ const cJSON *SimpleJsonPointer(const cJSON *json, const char *pointer)
         e++;
     }
                               
-    fprintf(stderr, "tokens:"); 
-    for (int i = 0; i < numtokens; i++) fprintf(stderr, "%s ", tokens[i]);
-    fprintf(stderr, "\n");
+    // fprintf(stderr, "tokens:"); 
+    // for (int i = 0; i < numtokens; i++) fprintf(stderr, "%s ", tokens[i]);
+    // fprintf(stderr, "\n");
 
     const cJSON *foundjson = browseOnLevel(json, tokens, 0, numtokens);
     for (int i = 0; i < numtokens; i++) 
@@ -200,11 +203,16 @@ int main()
             fprintf(stderr, "json is NULL\n");
             continue;
         }
-        fprintf(stderr, "%s\n", cJSON_Print(json));
+        char *p = cJSON_Print(json);
+        fprintf(stderr, "%s\n", p);
+	if (p) cJSON_free(p);
+
 
         for (int j = 0; cases[i][j].ptr; j++) {
             const cJSON *res = SimpleJsonPointer(json, cases[i][j].ptr);
-            fprintf(stderr, "for ptr: \"%s\" json: %s, test: %s\n", cases[i][j].ptr, (res ? cJSON_Print(res) : "NULL"), ((!!cases[i][j].result == !!(res != NULL)) ? "ok" : "failed"));
+            char *p = (res ? cJSON_Print(res) : NULL);
+            fprintf(stderr, "for ptr: \"%s\" json: %s, test: %s\n", cases[i][j].ptr, (p ? p : "NULL"), ((!!cases[i][j].result == !!(res != NULL)) ? "ok" : "failed"));
+            if (p) cJSON_free(p);
         }
 	cJSON_Delete(json);
     }

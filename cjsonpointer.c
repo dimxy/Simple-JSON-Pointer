@@ -1,12 +1,12 @@
+// cjsonpointer.c  
+// C-language RFC 6901 JSON pointer implementation for cJSON parser
 
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
 #include <ctype.h>
-
-#define true 1
-#define false 0
 #include <cJSON.h>
+#include "cjsonpointer.h"
 
 #define JP_MAXDEPTH 64
 #define TRUE 1

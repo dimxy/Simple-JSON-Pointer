@@ -206,6 +206,7 @@ int main()
             const cJSON *res = SimpleJsonPointer(json, cases[i][j].ptr);
             fprintf(stderr, "for ptr: \"%s\" json: %s, test: %s\n", cases[i][j].ptr, (res ? cJSON_Print(res) : "NULL"), ((!!cases[i][j].result == !!(res != NULL)) ? "ok" : "failed"));
         }
+	cJSON_Delete(json);
     }
 }
 --- */

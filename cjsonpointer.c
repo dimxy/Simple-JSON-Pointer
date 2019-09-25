@@ -48,7 +48,7 @@ static int isNumberString(const char *s)
     return (count == len);
 }
 
-// lambda to browse json recursively
+// browse json recursively
 const cJSON* browseOnLevel(const cJSON *json, char *tokens[], int curtoken, int numtokens)
 {
     if (cJSON_IsNull(json))

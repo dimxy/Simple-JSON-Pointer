@@ -1,11 +1,15 @@
-
 RFC 6901 'JSON Pointer' (https://tools.ietf.org/html/rfc6901) implementation for cJSON parser (https://github.com/DaveGamble/cJSON)
 
-Program lang: C
+Program language: C
 
 version: 1.0.0
 
-To test:
-uncomment main() function in cjsonpointer.c
+limitation: parts number in the json pointer is no more than 64
 
-build: gcc -I ./cjson/ cjsonpointer.c ./cjson/cJSON.c
+To test:
+
+uncomment main() function in cjsonpointer.c and build
+
+build: 
+
+gcc -I ./cJSON/ cjsonpointer.c ./cJSON/cJSON.c

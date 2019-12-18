@@ -12,4 +12,4 @@ To test:<br>
     uncomment main() function in cjsonpointer.c and build
 
 To build:<br> 
-    - `gcc -I ./cJSON/ cjsonpointer.c ./cJSON/cJSON.c`
+    `gcc -I ./cJSON/ cjsonpointer.c ./cJSON/cJSON.c`
